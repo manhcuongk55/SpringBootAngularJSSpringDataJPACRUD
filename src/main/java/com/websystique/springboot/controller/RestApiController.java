@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.websystique.springboot.model.User;
-import com.websystique.springboot.service.UserService;
+import com.websystique.springboot.model.Supplier;
+import com.websystique.springboot.service.SupplierService;
 import com.websystique.springboot.util.CustomErrorType;
 
 @RestController
@@ -26,98 +26,99 @@ public class RestApiController {
 	public static final Logger logger = LoggerFactory.getLogger(RestApiController.class);
 
 	@Autowired
-	UserService userService; //Service which will do all data retrieval/manipulation work
+	SupplierService supplierService; //Service which will do all data retrieval/manipulation work
 
-	// -------------------Retrieve All Users---------------------------------------------
+	// -------------------Retrieve All suppliers---------------------------------------------
 
-	@RequestMapping(value = "/user/", method = RequestMethod.GET)
-	public ResponseEntity<List<User>> listAllUsers() {
-		List<User> users = userService.findAllUsers();
-		if (users.isEmpty()) {
+	@RequestMapping(value = "/supplier/", method = RequestMethod.GET)
+	public ResponseEntity<List<Supplier>> listAllsuppliers() {
+		List<Supplier> suppliers = supplierService.findAllsuppliers();
+		if (suppliers.isEmpty()) {
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
 			// You many decide to return HttpStatus.NOT_FOUND
 		}
-		return new ResponseEntity<List<User>>(users, HttpStatus.OK);
+		return new ResponseEntity<List<Supplier>>(suppliers, HttpStatus.OK);
 	}
 
-	// -------------------Retrieve Single User------------------------------------------
+	// -------------------Retrieve Single supplier------------------------------------------
 
-	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> getUser(@PathVariable("id") long id) {
-		logger.info("Fetching User with id {}", id);
-		User user = userService.findById(id);
-		if (user == null) {
-			logger.error("User with id {} not found.", id);
-			return new ResponseEntity(new CustomErrorType("User with id " + id 
+	@RequestMapping(value = "/supplier/{id}", method = RequestMethod.GET)
+	public ResponseEntity<?> getsupplier(@PathVariable("id") long id) {
+		logger.info("Fetching supplier with id {}", id);
+		Supplier supplier = supplierService.findById(id);
+		if (supplier == null) {
+			logger.error("supplier with id {} not found.", id);
+			return new ResponseEntity(new CustomErrorType("supplier with id " + id 
 					+ " not found"), HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<User>(user, HttpStatus.OK);
+		return new ResponseEntity<Supplier>(supplier, HttpStatus.OK);
 	}
 
-	// -------------------Create a User-------------------------------------------
+	// -------------------Create a supplier-------------------------------------------
 
-	@RequestMapping(value = "/user/", method = RequestMethod.POST)
-	public ResponseEntity<?> createUser(@RequestBody User user, UriComponentsBuilder ucBuilder) {
-		logger.info("Creating User : {}", user);
+	@RequestMapping(value = "/supplier/", method = RequestMethod.POST)
+	public ResponseEntity<?> createsupplier(@RequestBody Supplier supplier, UriComponentsBuilder ucBuilder) {
+		logger.info("Creating supplier : {}", supplier);
 
-		if (userService.isUserExist(user)) {
-			logger.error("Unable to create. A User with name {} already exist", user.getName());
-			return new ResponseEntity(new CustomErrorType("Unable to create. A User with name " + 
-			user.getName() + " already exist."),HttpStatus.CONFLICT);
+		if (supplierService.issupplierExist(supplier)) {
+			logger.error("Unable to create. A supplier with name {} already exist", supplier.getName());
+			return new ResponseEntity(new CustomErrorType("Unable to create. A supplier with name " + 
+			supplier.getName() + " already exist."),HttpStatus.CONFLICT);
 		}
-		userService.saveUser(user);
+		supplierService.savesupplier(supplier);
 
 		HttpHeaders headers = new HttpHeaders();
-		headers.setLocation(ucBuilder.path("/api/user/{id}").buildAndExpand(user.getId()).toUri());
+		headers.setLocation(ucBuilder.path("/api/supplier/{id}").buildAndExpand(supplier.getSupplier_id()).toUri());
 		return new ResponseEntity<String>(headers, HttpStatus.CREATED);
 	}
 
-	// ------------------- Update a User ------------------------------------------------
+	// ------------------- Update a supplier ------------------------------------------------
 
-	@RequestMapping(value = "/user/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<?> updateUser(@PathVariable("id") long id, @RequestBody User user) {
-		logger.info("Updating User with id {}", id);
+	@RequestMapping(value = "/supplier/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<?> updatesupplier(@PathVariable("id") long id, @RequestBody Supplier supplier) {
+		logger.info("Updating supplier with id {}", id);
 
-		User currentUser = userService.findById(id);
+		Supplier currentsupplier = supplierService.findById(id);
 
-		if (currentUser == null) {
-			logger.error("Unable to update. User with id {} not found.", id);
-			return new ResponseEntity(new CustomErrorType("Unable to upate. User with id " + id + " not found."),
+		if (currentsupplier == null) {
+			logger.error("Unable to update. supplier with id {} not found.", id);
+			return new ResponseEntity(new CustomErrorType("Unable to upate. supplier with id " + id + " not found."),
 					HttpStatus.NOT_FOUND);
 		}
 
-		currentUser.setName(user.getName());
-		currentUser.setAge(user.getAge());
-		currentUser.setSalary(user.getSalary());
-
-		userService.updateUser(currentUser);
-		return new ResponseEntity<User>(currentUser, HttpStatus.OK);
+		currentsupplier.setName(supplier.getName());
+		currentsupplier.setType_id(supplier.getType_id());
+		currentsupplier.setAddress(supplier.getAddress());
+		currentsupplier.setDescription(supplier.getDescription());
+        
+		supplierService.updatesupplier(currentsupplier);
+		return new ResponseEntity<Supplier>(currentsupplier, HttpStatus.OK);
 	}
 
-	// ------------------- Delete a User-----------------------------------------
+	// ------------------- Delete a supplier-----------------------------------------
 
-	@RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<?> deleteUser(@PathVariable("id") long id) {
-		logger.info("Fetching & Deleting User with id {}", id);
+	@RequestMapping(value = "/supplier/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<?> deletesupplier(@PathVariable("id") long id) {
+		logger.info("Fetching & Deleting supplier with id {}", id);
 
-		User user = userService.findById(id);
-		if (user == null) {
-			logger.error("Unable to delete. User with id {} not found.", id);
-			return new ResponseEntity(new CustomErrorType("Unable to delete. User with id " + id + " not found."),
+		Supplier supplier = supplierService.findById(id);
+		if (supplier == null) {
+			logger.error("Unable to delete. supplier with id {} not found.", id);
+			return new ResponseEntity(new CustomErrorType("Unable to delete. supplier with id " + id + " not found."),
 					HttpStatus.NOT_FOUND);
 		}
-		userService.deleteUserById(id);
-		return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
+		supplierService.deletesupplierById(id);
+		return new ResponseEntity<Supplier>(HttpStatus.NO_CONTENT);
 	}
 
-	// ------------------- Delete All Users-----------------------------
+	// ------------------- Delete All suppliers-----------------------------
 
-	@RequestMapping(value = "/user/", method = RequestMethod.DELETE)
-	public ResponseEntity<User> deleteAllUsers() {
-		logger.info("Deleting All Users");
+	@RequestMapping(value = "/supplier/", method = RequestMethod.DELETE)
+	public ResponseEntity<Supplier> deleteAllsuppliers() {
+		logger.info("Deleting All suppliers");
 
-		userService.deleteAllUsers();
-		return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
+		supplierService.deleteAllsuppliers();
+		return new ResponseEntity<Supplier>(HttpStatus.NO_CONTENT);
 	}
 
 }

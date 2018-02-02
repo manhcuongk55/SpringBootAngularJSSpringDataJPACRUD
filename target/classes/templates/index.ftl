@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-
 <html lang="en" ng-app="crudApp">
     <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <title>${title}</title>
         <link href="css/bootstrap.css" rel="stylesheet"/>
         <link href="css/app.css" rel="stylesheet"/>

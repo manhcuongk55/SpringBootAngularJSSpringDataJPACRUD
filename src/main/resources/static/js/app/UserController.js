@@ -24,12 +24,12 @@ angular.module('crudApp').controller('UserController',
 
         function submit() {
             console.log('Submitting');
-            if (self.user.id === undefined || self.user.id === null) {
+            if (self.user.supplier_id === undefined || self.user.supplier_id === null) {
                 console.log('Saving New User', self.user);
                 createUser(self.user);
             } else {
-                updateUser(self.user, self.user.id);
-                console.log('User updated with id ', self.user.id);
+                updateUser(self.user, self.user.supplier_id);
+                console.log('User updated with id ', self.user.supplier_id);
             }
         }
 

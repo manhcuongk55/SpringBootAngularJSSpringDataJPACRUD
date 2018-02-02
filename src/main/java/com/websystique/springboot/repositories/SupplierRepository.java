@@ -1,12 +1,12 @@
 package com.websystique.springboot.repositories;
 
-import com.websystique.springboot.model.User;
+import com.websystique.springboot.model.Supplier;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface SupplierRepository extends JpaRepository<Supplier, Long> {
 
-    User findByName(String name);
+    Supplier findByName(String name);
 
 }

@@ -12,32 +12,32 @@
 	                    <div class="form-group col-md-12">
 	                        <label class="col-md-2 control-lable" for="uname">Name</label>
 	                        <div class="col-md-7">
-	                            <input type="text" ng-model="ctrl.user.name" id="uname" class="username form-control input-sm" placeholder="Enter your name" required ng-minlength="3"/>
+	                            <input type="text" ng-model="ctrl.user.name" id="uname" class="username form-control input-sm" placeholder="Nhập tên quán" required ng-minlength="3"/>
 	                        </div>
 	                    </div>
 	                </div>
 
 	                <div class="row">
 	                    <div class="form-group col-md-12">
-	                        <label class="col-md-2 control-lable" for="age">Age</label>
+	                        <label class="col-md-2 control-lable" for="age">Address</label>
 	                        <div class="col-md-7">
-	                            <input type="text" ng-model="ctrl.user.age" id="age" class="form-control input-sm" placeholder="Enter your Age." required ng-pattern="ctrl.onlyIntegers"/>
+	                            <input type="text" ng-model="ctrl.user.address" id="address" class="form-control input-sm" placeholder="Nhập địa chỉ quán"/>
 	                        </div>
 	                    </div>
 	                </div>
 	
 	                <div class="row">
 	                    <div class="form-group col-md-12">
-	                        <label class="col-md-2 control-lable" for="salary">Salary</label>
+	                        <label class="col-md-2 control-lable" for="salary">Description</label>
 	                        <div class="col-md-7">
-	                            <input type="text" ng-model="ctrl.user.salary" id="salary" class="form-control input-sm" placeholder="Enter your Salary." required ng-pattern="ctrl.onlyNumbers"/>
+	                            <input type="text" ng-model="ctrl.user.description" id="description" class="form-control input-sm" placeholder="Nhập miêu tả quán"/>
 	                        </div>
 	                    </div>
 	                </div>
 
 	                <div class="row">
 	                    <div class="form-actions floatRight">
-	                        <input type="submit"  value="{{!ctrl.user.id ? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid || myForm.$pristine">
+	                        <input type="submit"  value="{{!ctrl.user.supplier_id ? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid || myForm.$pristine">
 	                        <button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Reset Form</button>
 	                    </div>
 	                </div>
@@ -55,20 +55,20 @@
 		            <tr>
 		                <th>ID</th>
 		                <th>NAME</th>
-		                <th>AGE</th>
-		                <th>SALARY</th>
+		                <th>ADDRESS</th>
+		                <th>DESCRIPTION</th>
 		                <th width="100"></th>
 		                <th width="100"></th>
 		            </tr>
 		            </thead>
 		            <tbody>
 		            <tr ng-repeat="u in ctrl.getAllUsers()">
-		                <td>{{u.id}}</td>
+		                <td>{{u.supplier_id}}</td>
 		                <td>{{u.name}}</td>
-		                <td>{{u.age}}</td>
-		                <td>{{u.salary}}</td>
-		                <td><button type="button" ng-click="ctrl.editUser(u.id)" class="btn btn-success custom-width">Edit</button></td>
-		                <td><button type="button" ng-click="ctrl.removeUser(u.id)" class="btn btn-danger custom-width">Remove</button></td>
+		                <td>{{u.address}}</td>
+		                <td>{{u.description}}</td>
+		                <td><button type="button" ng-click="ctrl.editUser(u.supplier_id)" class="btn btn-success custom-width">Edit</button></td>
+		                <td><button type="button" ng-click="ctrl.removeUser(u.supplier_id)" class="btn btn-danger custom-width">Remove</button></td>
 		            </tr>
 		            </tbody>
 		        </table>		
