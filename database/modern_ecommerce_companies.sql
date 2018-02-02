@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.20, for Linux (x86_64)
 --
--- Host: 127.0.0.1    Database: plusplusc1
+-- Host: 127.0.0.1    Database: modern_ecommerce
 -- ------------------------------------------------------
 -- Server version	5.7.20-0ubuntu0.16.04.1
 
@@ -16,29 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `APP_USER`
+-- Table structure for table `companies`
 --
 
-DROP TABLE IF EXISTS `APP_USER`;
+DROP TABLE IF EXISTS `companies`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `APP_USER` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(30) NOT NULL,
-  `age` int(11) NOT NULL,
-  `salary` double NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+CREATE TABLE `companies` (
+  `company_id` int(11) NOT NULL AUTO_INCREMENT,
+  `create_date` datetime NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `status` int(11) NOT NULL,
+  `address` varchar(500) CHARACTER SET utf8 DEFAULT NULL,
+  PRIMARY KEY (`company_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `APP_USER`
+-- Dumping data for table `companies`
 --
 
-LOCK TABLES `APP_USER` WRITE;
-/*!40000 ALTER TABLE `APP_USER` DISABLE KEYS */;
-INSERT INTO `APP_USER` VALUES (1,'Sam',30,70000),(2,'Tom',40,50000);
-/*!40000 ALTER TABLE `APP_USER` ENABLE KEYS */;
+LOCK TABLES `companies` WRITE;
+/*!40000 ALTER TABLE `companies` DISABLE KEYS */;
+INSERT INTO `companies` VALUES (1,'2016-09-09 00:00:00','NIT-Software',1,'Hà nội'),(2,'2016-09-09 00:00:00','NIT-Software',1,'Hà nội'),(3,'2016-09-09 00:00:00','NIT-Software',1,'Hà nội'),(4,'2016-09-09 00:00:00','NIT-Software',1,'Hà nội'),(5,'2016-09-09 00:00:00','NIT-Software',1,'Hà nội'),(6,'2016-09-09 00:00:00','NIT-Software',1,'Hà nội'),(7,'2016-09-09 00:00:00','NIT-Software',1,'Hà nội'),(8,'2016-09-09 00:00:00','NIT-Software',1,'Hà nội'),(9,'2016-09-09 00:00:00','NIT-Software',1,'Hà nội');
+/*!40000 ALTER TABLE `companies` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-26 15:22:58
+-- Dump completed on 2018-02-02 17:23:51
