@@ -1,104 +1,104 @@
 'use strict';
 
-angular.module('crudApp').factory('UserService',
+angular.module('supplier').factory('SupplierService',
     ['$localStorage', '$http', '$q', 'urls',
         function ($localStorage, $http, $q, urls) {
 
             var factory = {
-                loadAllUsers: loadAllUsers,
-                getAllUsers: getAllUsers,
-                getUser: getUser,
-                createUser: createUser,
-                updateUser: updateUser,
-                removeUser: removeUser
+                loadAllSuppliers: loadAllSuppliers,
+                getAllSuppliers: getAllSuppliers,
+                getSupplier: getSupplier,
+                createSupplier: createSupplier,
+                updateSupplier: updateSupplier,
+                removeSupplier: removeSupplier
             };
 
             return factory;
 
-            function loadAllUsers() {
-                console.log('Fetching all users');
+            function loadAllSuppliers() {
+                console.log('Fetching all suppliers');
                 var deferred = $q.defer();
-                $http.get(urls.USER_SERVICE_API)
+                $http.get(urls.SUPPLIER_SERVICE_API)
                     .then(
                         function (response) {
-                            console.log('Fetched successfully all users');
-                            $localStorage.users = response.data;
+                            console.log('Fetched successfully all suppliers');
+                            $localStorage.suppliers = response.data;
                             deferred.resolve(response);
                         },
                         function (errResponse) {
-                            console.error('Error while loading users');
+                            console.error('Error while loading suppliers');
                             deferred.reject(errResponse);
                         }
                     );
                 return deferred.promise;
             }
 
-            function getAllUsers(){
-                return $localStorage.users;
+            function getAllSuppliers(){
+                return $localStorage.suppliers;
             }
 
-            function getUser(id) {
-                console.log('Fetching User with id :'+id);
+            function getSupplier(id) {
+                console.log('Fetching Supplier with id :'+id);
                 var deferred = $q.defer();
-                $http.get(urls.USER_SERVICE_API + id)
+                $http.get(urls.SUPPLIER_SERVICE_API + id)
                     .then(
                         function (response) {
-                            console.log('Fetched successfully User with id :'+id);
+                            console.log('Fetched successfully Supplier with id :'+id);
                             deferred.resolve(response.data);
                         },
                         function (errResponse) {
-                            console.error('Error while loading user with id :'+id);
+                            console.error('Error while loading Supplier with id :'+id);
                             deferred.reject(errResponse);
                         }
                     );
                 return deferred.promise;
             }
 
-            function createUser(user) {
-                console.log('Creating User');
+            function createSupplier(supplier) {
+                console.log('Creating supplier');
                 var deferred = $q.defer();
-                $http.post(urls.USER_SERVICE_API, user)
+                $http.post(urls.SUPPLIER_SERVICE_API, supplier)
                     .then(
                         function (response) {
-                            loadAllUsers();
+                            loadAllSuppliers();
                             deferred.resolve(response.data);
                         },
                         function (errResponse) {
-                           console.error('Error while creating User : '+errResponse.data.errorMessage);
+                           console.error('Error while creating Supplier : '+errResponse.data.errorMessage);
                            deferred.reject(errResponse);
                         }
                     );
                 return deferred.promise;
             }
 
-            function updateUser(user, id) {
-                console.log('Updating User with id '+id);
+            function updateSupplier(supplier, id) {
+                console.log('Updating Supplier with id '+id);
                 var deferred = $q.defer();
-                $http.put(urls.USER_SERVICE_API + id, user)
+                $http.put(urls.SUPPLIER_SERVICE_API + id, supplier)
                     .then(
                         function (response) {
-                            loadAllUsers();
+                            loadAllSuppliers();
                             deferred.resolve(response.data);
                         },
                         function (errResponse) {
-                            console.error('Error while updating User with id :'+id);
+                            console.error('Error while updating Supplier with id :'+id);
                             deferred.reject(errResponse);
                         }
                     );
                 return deferred.promise;
             }
 
-            function removeUser(id) {
-                console.log('Removing User with id '+id);
+            function removeSupplier(id) {
+                console.log('Removing Supplier with id '+id);
                 var deferred = $q.defer();
-                $http.delete(urls.USER_SERVICE_API + id)
+                $http.delete(urls.SUPPLIER_SERVICE_API + id)
                     .then(
                         function (response) {
-                            loadAllUsers();
+                            loadAllSuppliers();
                             deferred.resolve(response.data);
                         },
                         function (errResponse) {
-                            console.error('Error while removing User with id :'+id);
+                            console.error('Error while removing Supplier with id :'+id);
                             deferred.reject(errResponse);
                         }
                     );

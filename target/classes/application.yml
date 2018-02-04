@@ -1,13 +1,13 @@
 server:
   port: 8080
-  contextPath: /SpringBootCRUDApp
+  contextPath: /fuwo
 spring:
   profiles: local,default
 datasource:
   sampleapp:
-    url: jdbc:mysql://localhost:3306/modern_ecommerce?characterEncoding=utf8
+    url: jdbc:mysql://localhost:3306/fuwo?characterEncoding=utf8
     username: root
-    password: 123456c@
+    password: ok
     driverClassName: com.mysql.jdbc.Driver
     defaultSchema:
     maxPoolSize: 20

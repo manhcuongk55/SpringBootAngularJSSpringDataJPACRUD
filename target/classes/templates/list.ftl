@@ -1,4 +1,4 @@
-<div class="generic-container">
+<div class="generic-container" ng-controller="SupplierController">
     <div class="panel panel-default">
         <!-- Default panel contents -->
         <div class="panel-heading"><span class="lead">Thông tin của hàng </span></div>
@@ -7,49 +7,46 @@
 	            <div class="alert alert-success" role="alert" ng-if="ctrl.successMessage">{{ctrl.successMessage}}</div>
 	            <div class="alert alert-danger" role="alert" ng-if="ctrl.errorMessage">{{ctrl.errorMessage}}</div>
 	            <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
-	                <input type="hidden" ng-model="ctrl.user.id" />
+	                <input type="hidden" ng-model="ctrl.supplier.id" />
 	                <div class="row">
 	                    <div class="form-group col-md-12">
-	                        <label class="col-md-2 control-lable" for="uname">Name</label>
+	                        <label class="col-md-2 control-lable" for="uname">Tên</label>
 	                        <div class="col-md-7">
-	                            <input type="text" ng-model="ctrl.user.name" id="uname" class="username form-control input-sm" placeholder="Nhập tên quán" required ng-minlength="3"/>
+	                            <input type="text" ng-model="ctrl.supplier.name" id="uname" class="username form-control input-sm" placeholder="Nhập tên quán" required ng-minlength="3"/>
 	                        </div>
 	                    </div>
 	                </div>
 
 	                <div class="row">
 	                    <div class="form-group col-md-12">
-	                        <label class="col-md-2 control-lable" for="age">Address</label>
+	                        <label class="col-md-2 control-lable" for="age">Địa chỉ</label>
 	                        <div class="col-md-7">
-	                            <input type="text" ng-model="ctrl.user.address" id="address" class="form-control input-sm" placeholder="Nhập địa chỉ quán"/>
+	                            <input type="text" ng-model="ctrl.supplier.address" id="address" class="form-control input-sm" placeholder="Nhập địa chỉ quán"/>
 	                        </div>
 	                    </div>
 	                </div>
 	
 	                <div class="row">
 	                    <div class="form-group col-md-12">
-	                        <label class="col-md-2 control-lable" for="salary">Description</label>
+	                        <label class="col-md-2 control-lable" for="salary">Miêu tả</label>
 	                        <div class="col-md-7">
-	                            <input type="text" ng-model="ctrl.user.description" id="description" class="form-control input-sm" placeholder="Nhập miêu tả quán"/>
+	                            <input type="text" ng-model="ctrl.supplier.description" id="description" class="form-control input-sm" placeholder="Nhập miêu tả quán"/>
 	                        </div>
 	                    </div>
 	                </div>
                     <div class="row">
 	                    <div class="form-group col-md-12">
-	                        <label class="col-md-2 control-lable" for="salary">Type</label>
+	                        <label class="col-md-2 control-lable" for="type">Loại hình</label>
+	                        {{ctrl.supplier}}
 	                        <div class="col-md-7">
-	                            <select>
-								  <option value="volvo">Volvo</option>
-								  <option value="saab">Saab</option>
-								  <option value="mercedes">Mercedes</option>
-								  <option value="audi">Audi</option>
+	                            <select ng-model="ctrl.supplier.type_id" ng-options="x for (x, y) in types">
 								</select>
 	                        </div>
 	                    </div>
 	                </div>
 	                <div class="row">
 	                    <div class="form-actions floatRight">
-	                        <input type="submit"  value="{{!ctrl.user.supplier_id ? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid || myForm.$pristine">
+	                        <input type="submit"  value="{{!ctrl.supplier.supplier_id ? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid || myForm.$pristine">
 	                        <button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Reset Form</button>
 	                    </div>
 	                </div>
@@ -66,21 +63,23 @@
 		            <thead>
 		            <tr>
 		                <th>ID</th>
-		                <th>NAME</th>
-		                <th>ADDRESS</th>
-		                <th>DESCRIPTION</th>
+		                <th>Tên</th>
+		                <th>Địa chỉ</th>
+		                <th>Miêu tả</th>
+		                <th>Loại hình</th>
 		                <th width="100"></th>
 		                <th width="100"></th>
 		            </tr>
 		            </thead>
 		            <tbody>
-		            <tr ng-repeat="u in ctrl.getAllUsers()">
+		            <tr ng-repeat="u in ctrl.getAllSuppliers()">
 		                <td>{{u.supplier_id}}</td>
 		                <td>{{u.name}}</td>
 		                <td>{{u.address}}</td>
 		                <td>{{u.description}}</td>
-		                <td><button type="button" ng-click="ctrl.editUser(u.supplier_id)" class="btn btn-success custom-width">Edit</button></td>
-		                <td><button type="button" ng-click="ctrl.removeUser(u.supplier_id)" class="btn btn-danger custom-width">Remove</button></td>
+		                <td>{{arrayType[u.type_id]}}</td>
+		                <td><button type="button" ng-click="ctrl.editSupplier(u.supplier_id)" class="btn btn-success custom-width">Sửa</button></td>
+		                <td><button type="button" ng-click="ctrl.removeSupplier(u.supplier_id)" class="btn btn-danger custom-width">Xóa</button></td>
 		            </tr>
 		            </tbody>
 		        </table>		

@@ -1,8 +1,8 @@
-var app = angular.module('crudApp',['ui.router','ngStorage']);
+var app = angular.module('supplier',['ui.router','ngStorage']);
 
 app.constant('urls', {
-    BASE: 'http://localhost:8080/SpringBootCRUDApp',
-    USER_SERVICE_API : 'http://localhost:8080/SpringBootCRUDApp/api/supplier/'
+    BASE: 'http://localhost:8080/fuwo',
+    SUPPLIER_SERVICE_API : 'http://localhost:8080/fuwo/api/supplier/'
 });
 
 app.config(['$stateProvider', '$urlRouterProvider',
@@ -12,13 +12,13 @@ app.config(['$stateProvider', '$urlRouterProvider',
             .state('home', {
                 url: '/',
                 templateUrl: 'partials/list',
-                controller:'UserController',
+                controller:'SupplierController',
                 controllerAs:'ctrl',
                 resolve: {
-                    users: function ($q, UserService) {
-                        console.log('Load all users');
+                    suppliers: function ($q, SupplierService) {
+                        console.log('Load all suppliers');
                         var deferred = $q.defer();
-                        UserService.loadAllUsers().then(deferred.resolve, deferred.resolve);
+                        SupplierService.loadAllSuppliers().then(deferred.resolve, deferred.resolve);
                         return deferred.promise;
                     }
                 }
