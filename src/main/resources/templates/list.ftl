@@ -1,4 +1,4 @@
-<div class="generic-container" ng-controller="SupplierController">
+<div class="generic-container">
     <div class="panel panel-default">
         <!-- Default panel contents -->
         <div class="panel-heading"><span class="lead">Thông tin của hàng </span></div>
@@ -7,7 +7,7 @@
 	            <div class="alert alert-success" role="alert" ng-if="ctrl.successMessage">{{ctrl.successMessage}}</div>
 	            <div class="alert alert-danger" role="alert" ng-if="ctrl.errorMessage">{{ctrl.errorMessage}}</div>
 	            <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
-	                <input type="hidden" ng-model="ctrl.supplier.id" />
+	                <input type="hidden" ng-model="ctrl.supplier.supplier_id" />
 	                <div class="row">
 	                    <div class="form-group col-md-12">
 	                        <label class="col-md-2 control-lable" for="uname">Tên</label>
@@ -37,9 +37,8 @@
                     <div class="row">
 	                    <div class="form-group col-md-12">
 	                        <label class="col-md-2 control-lable" for="type">Loại hình</label>
-	                        {{ctrl.supplier}}
 	                        <div class="col-md-7">
-	                            <select ng-model="ctrl.supplier.type_id" ng-options="x for (x, y) in types">
+	                            <select ng-model="ctrl.supplier.type_id" ng-options="x for (x, y) in ctrl.types">
 								</select>
 	                        </div>
 	                    </div>
@@ -77,7 +76,7 @@
 		                <td>{{u.name}}</td>
 		                <td>{{u.address}}</td>
 		                <td>{{u.description}}</td>
-		                <td>{{arrayType[u.type_id]}}</td>
+		                <td>{{ctrl.arrayType[u.type_id]}}</td>
 		                <td><button type="button" ng-click="ctrl.editSupplier(u.supplier_id)" class="btn btn-success custom-width">Sửa</button></td>
 		                <td><button type="button" ng-click="ctrl.removeSupplier(u.supplier_id)" class="btn btn-danger custom-width">Xóa</button></td>
 		            </tr>

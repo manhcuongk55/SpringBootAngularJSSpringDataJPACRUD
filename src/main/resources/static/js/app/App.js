@@ -1,8 +1,8 @@
 var app = angular.module('supplier',['ui.router','ngStorage']);
 
 app.constant('urls', {
-    BASE: 'http://localhost:8080/fuwo',
-    SUPPLIER_SERVICE_API : 'http://localhost:8080/fuwo/api/supplier/'
+    BASE: 'http://45.124.95.253:8989/fuwo',
+    SUPPLIER_SERVICE_API : 'http://45.124.95.253:8989/fuwo/api/supplier/'
 });
 
 app.config(['$stateProvider', '$urlRouterProvider',

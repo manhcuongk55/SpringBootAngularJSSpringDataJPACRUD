@@ -1,4 +1,4 @@
-package com.websystique.springboot.controller;
+package vn.plusplusc.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -10,7 +10,7 @@ public class AppController {
 
 	@RequestMapping("/")
 	String home(ModelMap modal) {
-		modal.addAttribute("title","CRUD Example");
+		modal.addAttribute("title","Thông tin của hàng");
 		return "index";
 	}
 

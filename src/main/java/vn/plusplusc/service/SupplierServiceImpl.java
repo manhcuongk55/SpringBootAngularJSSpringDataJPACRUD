@@ -1,12 +1,13 @@
-package com.websystique.springboot.service;
+package vn.plusplusc.service;
 
 import java.util.List;
 
-import com.websystique.springboot.model.Supplier;
-import com.websystique.springboot.repositories.SupplierRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import vn.plusplusc.model.Supplier;
+import vn.plusplusc.repositories.SupplierRepository;
 
 
 

@@ -2,7 +2,7 @@
 <html lang="en" ng-app="supplier">
     <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <title>Thông tin của hàng</title>
+        <title>${title}</title>
         <link href="css/bootstrap.css" rel="stylesheet"/>
         <link href="css/app.css" rel="stylesheet"/>
     </head>

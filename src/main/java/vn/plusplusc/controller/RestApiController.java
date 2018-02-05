@@ -1,4 +1,4 @@
-package com.websystique.springboot.controller;
+package vn.plusplusc.controller;
 
 import java.util.List;
 
@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.websystique.springboot.model.Supplier;
-import com.websystique.springboot.service.SupplierService;
-import com.websystique.springboot.util.CustomErrorType;
+import vn.plusplusc.model.Supplier;
+import vn.plusplusc.service.SupplierService;
+import vn.plusplusc.util.CustomErrorType;
 
 @RestController
 @RequestMapping("/api")

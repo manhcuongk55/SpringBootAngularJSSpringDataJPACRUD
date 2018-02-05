@@ -6,7 +6,6 @@ angular.module('supplier').controller('SupplierController',
         var self = this;
         self.supplier = {};
         self.suppliers=[];
-        $scope.myForm ={};
         self.submit = submit;
         self.getAllSuppliers = getAllSuppliers;
         self.createSupplier = createSupplier;
@@ -22,12 +21,12 @@ angular.module('supplier').controller('SupplierController',
         self.onlyIntegers = /^\d+$/;
         self.onlyNumbers = /^\d+([,.]\d+)?$/;
         
-        $scope.types = {
+        self.types = {
         		"Đồ ăn nhanh" :0,
         		"Đồ uống" :1,
         		"Đồ ăn sáng" :2
             }
-        $scope.arrayType=["Đồ ăn nhanh", "Đồ uống", "Đồ ăn sáng"];
+        self.arrayType=["Đồ ăn nhanh", "Đồ uống", "Đồ ăn sáng"];
 
         function submit() {
             console.log('Submitting');
@@ -49,7 +48,7 @@ angular.module('supplier').controller('SupplierController',
                         self.successMessage = 'Supplier created successfully';
                         self.errorMessage='';
                         self.done = true;
-                        self.supplier=response.data;
+                        self.supplier = {};
                         $scope.myForm.$setPristine();
                     },
                     function (errResponse) {
@@ -62,8 +61,8 @@ angular.module('supplier').controller('SupplierController',
 
 
         function updateSupplier(supplier, id){
-            console.log('About to update s');
-            SupplierService.updateSupplier(Supplier, id)
+            console.log('About to update supplier');
+            SupplierService.updateSupplier(supplier, id)
                 .then(
                     function (response){
                         console.log('Supplier updated successfully');

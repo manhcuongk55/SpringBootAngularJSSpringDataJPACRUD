@@ -1,9 +1,9 @@
-package com.websystique.springboot.service;
+package vn.plusplusc.service;
 
-
-import com.websystique.springboot.model.Supplier;
 
 import java.util.List;
+
+import vn.plusplusc.model.Supplier;
 
 public interface SupplierService {
 	

@@ -1,4 +1,4 @@
-package com.websystique.springboot.util;
+package vn.plusplusc.util;
 
 
 public class CustomErrorType {

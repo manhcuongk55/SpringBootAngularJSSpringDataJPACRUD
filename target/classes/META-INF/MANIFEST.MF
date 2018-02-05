@@ -1,11 +1,10 @@
 Manifest-Version: 1.0
-Implementation-Title: SpringBootCRUDApplicationExample
+Implementation-Title: Shop
 Implementation-Version: 1.0.0
-Built-By: cuongdm29
-Implementation-Vendor-Id: com.websystique.springboot
+Built-By: utit
+Implementation-Vendor-Id: vn.plusplusc
 Build-Jdk: 1.8.0_151
-Implementation-URL: http://projects.spring.io/spring-boot/SpringBootCR
- UDApplicationExample/
+Implementation-URL: http://projects.spring.io/spring-boot/Shop/
 Created-By: Maven Integration for Eclipse
 Implementation-Vendor: Pivotal Software, Inc.
 

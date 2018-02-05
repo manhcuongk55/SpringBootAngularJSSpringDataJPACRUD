@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8989
   contextPath: /fuwo
 spring:
   profiles: local,default
@@ -7,7 +7,7 @@ datasource:
   sampleapp:
     url: jdbc:mysql://localhost:3306/fuwo?characterEncoding=utf8
     username: root
-    password: ok
+    password: 123456c@
     driverClassName: com.mysql.jdbc.Driver
     defaultSchema:
     maxPoolSize: 20
