@@ -44,6 +44,15 @@
 	                    </div>
 	                </div>
 	                <div class="row">
+	                    <div class="form-group col-md-12">
+	                        <label class="col-md-2 control-lable" for="Status">Hiện trang</label>
+	                        <div class="col-md-7">
+	                            <select ng-model="ctrl.supplier.status" ng-options="x for (x, y) in ctrl.statusMap">
+								</select>
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="row">
 	                    <div class="form-actions floatRight">
 	                        <input type="submit"  value="{{!ctrl.supplier.supplier_id ? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid || myForm.$pristine">
 	                        <button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Reset Form</button>
@@ -56,6 +65,7 @@
     <div class="panel panel-default">
         <!-- Default panel contents -->
         <div class="panel-heading"><span class="lead">Danh sách các cửa hàng</span></div>
+        {{ctrl.supplier}}
 		<div class="panel-body">
 			<div class="table-responsive">
 		        <table class="table table-hover">
@@ -66,6 +76,7 @@
 		                <th>Địa chỉ</th>
 		                <th>Miêu tả</th>
 		                <th>Loại hình</th>
+		                <th>Tình trạng</th>
 		                <th width="100"></th>
 		                <th width="100"></th>
 		            </tr>
@@ -77,6 +88,7 @@
 		                <td>{{u.address}}</td>
 		                <td>{{u.description}}</td>
 		                <td>{{ctrl.arrayType[u.type_id]}}</td>
+		                 <td>{{ctrl.arrayStatus[u.status]}}</td>
 		                <td><button type="button" ng-click="ctrl.editSupplier(u.supplier_id)" class="btn btn-success custom-width">Sửa</button></td>
 		                <td><button type="button" ng-click="ctrl.removeSupplier(u.supplier_id)" class="btn btn-danger custom-width">Xóa</button></td>
 		            </tr>

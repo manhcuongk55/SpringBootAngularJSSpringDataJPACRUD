@@ -1,5 +1,6 @@
 package vn.plusplusc.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -60,11 +61,13 @@ public class RestApiController {
 	public ResponseEntity<?> createsupplier(@RequestBody Supplier supplier, UriComponentsBuilder ucBuilder) {
 		logger.info("Creating supplier : {}", supplier);
 
-		if (supplierService.issupplierExist(supplier)) {
+		/*if (supplierService.issupplierExist(supplier)) {
 			logger.error("Unable to create. A supplier with name {} already exist", supplier.getName());
 			return new ResponseEntity(new CustomErrorType("Unable to create. A supplier with name " + 
 			supplier.getName() + " already exist."),HttpStatus.CONFLICT);
-		}
+		}*/
+		supplier.setCreate_date(new Date());
+		supplier.setCompany_id(1L);
 		supplierService.savesupplier(supplier);
 
 		HttpHeaders headers = new HttpHeaders();

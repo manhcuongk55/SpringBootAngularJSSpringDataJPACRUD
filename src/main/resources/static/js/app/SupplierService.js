@@ -10,7 +10,8 @@ angular.module('supplier').factory('SupplierService',
                 getSupplier: getSupplier,
                 createSupplier: createSupplier,
                 updateSupplier: updateSupplier,
-                removeSupplier: removeSupplier
+                removeSupplier: removeSupplier,
+                getCoordinateFromAddress: getCoordinateFromAddress
             };
 
             return factory;
@@ -32,7 +33,22 @@ angular.module('supplier').factory('SupplierService',
                     );
                 return deferred.promise;
             }
-
+            function getCoordinateFromAddress(address){
+            	console.log('get coordinate from :'+address);
+                var deferred = $q.defer();
+                $http.get(urls.GOOGLE_MAP_API + address + urls.KEY)
+                    .then(
+                        function (response) {
+                            console.log('API map google :'+ response);
+                            deferred.resolve(response.data);
+                        },
+                        function (errResponse) {
+                            console.error('Error while API map google :'+ address);
+                            deferred.reject(errResponse);
+                        }
+                    );
+                return deferred.promise;
+            }
             function getAllSuppliers(){
                 return $localStorage.suppliers;
             }

@@ -8,6 +8,7 @@ angular.module('supplier').controller('SupplierController',
         self.suppliers=[];
         self.submit = submit;
         self.getAllSuppliers = getAllSuppliers;
+        self.getCoordinateFromAddress = getCoordinateFromAddress;
         self.createSupplier = createSupplier;
         self.updateSupplier = updateSupplier;
         self.removeSupplier = removeSupplier;
@@ -17,26 +18,62 @@ angular.module('supplier').controller('SupplierController',
         self.successMessage = '';
         self.errorMessage = '';
         self.done = false;
-
+        self.coordinate = {};
+        
         self.onlyIntegers = /^\d+$/;
         self.onlyNumbers = /^\d+([,.]\d+)?$/;
         
         self.types = {
         		"Đồ ăn nhanh" :0,
         		"Đồ uống" :1,
-        		"Đồ ăn sáng" :2
+        		"Đồ ăn sáng" :2,
+        		"Quần áo":3,
+        		"Phụ tùng xe cộ":4,
+        		"Giầy dép":5,
+        		"Cầm đồ":6,
+        		"Rửa xe":7,
+        		"Sửa chữa điện thoại":8,
+        		"Bán kính mắt":9,
+        		"Nha sĩ":10,
+        		"Bán thuốc":11,
+        		"Vật liệu xây dựng":12,
+        		"Nhà nghỉ":13
             }
-        self.arrayType=["Đồ ăn nhanh", "Đồ uống", "Đồ ăn sáng"];
+        self.arrayType=["Đồ ăn nhanh", "Đồ uống", "Đồ ăn sáng","Quân áo", "Phụ tùng xe cộ", "Giầy dép", "Cầm đồ", "Rửa xe", "Sửa chữa điện thoại", "Bán kính mắt","Nha sĩ", "Bán thuốc", "Vật liệu xây dựng", "Nhà nghỉ"];
+        self.statusMap = {
+        		"Hoạt động" :0,
+        		"Đóng của" :1,
+        		"Tạm ngưng" :2
+            }
+        self.arrayStatus=["Hoạt động", "Đóng của", "Tạm ngưng"];
 
         function submit() {
             console.log('Submitting');
             if (self.supplier.supplier_id === undefined || self.supplier.supplier_id === null) {
                 console.log('Saving New Supplier', self.supplier);
+                getCoordinateFromAddress(self.supplier.address);
                 createSupplier(self.supplier);
             } else {
                 updateSupplier(self.supplier, self.supplier.supplier_id);
                 console.log('Supplier updated with id ', self.supplier.supplier_id);
             }
+        }
+        
+        function getCoordinateFromAddress(address){
+        	 console.log('getCoordinateFromAddress');
+             SupplierService.getCoordinateFromAddress(address)
+                 .then(
+                     function (response) {
+                         console.log('getCoordinateFromAddress successfully');
+                         self.coordinate = response;
+                         self.supplier.coordinate = self.coordinate;
+                     },
+                     function (errResponse) {
+                         console.error('Error while creating Supplier');
+                         self.errorMessage = 'Error while creating Supplier: ' + errResponse.data.errorMessage;
+                         self.successMessage='';
+                     }
+                 );
         }
 
         function createSupplier(supplier) {

@@ -4,38 +4,61 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
-@Table(name="suppliers")
-public class Supplier implements Serializable{
+@Table(name = "suppliers")
+public class Supplier implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long supplier_id;
 
-	@Column(name="company_id", nullable=false)
+	@Column(name = "company_id", nullable = false)
 	private Long company_id;
 
-	@Column(name="description", nullable=false)
+	@Column(name = "description", nullable = false)
 	private String description;
 
-	@Column(name="name", nullable=false)
+	@Column(name = "name", nullable = false)
 	private String name;
-	
-	@Column(name="status", nullable=false)
+
+	@Column(name = "status", nullable = false)
 	private Integer status;
-	
-	@Column(name="address", nullable=false)
+
+	@Column(name = "address", nullable = false)
 	private String address;
-	
-	@Column(name="image", nullable=false)
+
+	@Column(name = "image", nullable = false)
 	private String image;
 
-	@Column(name="type_id", nullable=false)
+	@Column(name = "type_id", nullable = false)
 	private Long type_id;
+	
+	@Column(name = "create_date", nullable = false)
+	private Date create_date;
+	
+	@Column(name = "coordinate", nullable = false)
+	private String coordinate;
+	
+	public String getCoordinate() {
+		return coordinate;
+	}
+
+	public void setCoordinate(String coordinate) {
+		this.coordinate = coordinate;
+	}
 
 	public Long getSupplier_id() {
 		return supplier_id;
+	}
+
+	public Date getCreate_date() {
+		return create_date;
+	}
+
+	public void setCreate_date(Date create_date) {
+		this.create_date = create_date;
 	}
 
 	public void setSupplier_id(Long supplier_id) {
@@ -97,6 +120,5 @@ public class Supplier implements Serializable{
 	public void setType_id(Long type_id) {
 		this.type_id = type_id;
 	}
-	
-	
+
 }
